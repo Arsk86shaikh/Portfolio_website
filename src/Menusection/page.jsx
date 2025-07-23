@@ -119,7 +119,7 @@ export default function MenuPage() {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="grid grid-cols-1 md:grid-cols-2 gap-6"
+            className="w-full grid grid-cols-1 md:grid-cols-2 gap-6"
           >
             {filtered.map((product) => (
               <motion.div
