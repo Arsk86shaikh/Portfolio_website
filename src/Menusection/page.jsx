@@ -103,53 +103,54 @@ export default function MenuPage() {
 
   return (
     <section className="min-h-screen p-6">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-8">
-       
-  <div className="md:w-1/4 sticky top-20 h-fit">
-    <CategorySidebar
-      categories={categories}
-      selected={selected}
-      setSelected={setSelected}
-    />
-  </div>
-  
-
-        <motion.main
-  variants={containerVariants}
-  initial="hidden"
-  animate="visible"
-  className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 px-4"
->
-  {filtered.map((product) => (
-    <motion.div
-      key={product.id}
-      variants={cardVariants}
-      className="flex h-60 bg-white rounded-xl shadow border border-[#ffd64f] hover:shadow-lg transition overflow-hidden"
-    >
-      <img
-        src={product.img}
-        alt={product.name}
-        className="w-40 h-full object-cover"
-      />
-      <div className="flex-1 p-4 text-left flex flex-col justify-between">
-        <div className="space-y-1">
-          <h3 className="text-lg font-semibold text-gray-900">{product.name}</h3>
-          <p className="text-gray-500 text-sm">{product.category}</p>
-          <div className="text-green-700 font-medium">₹{product.price}</div>
+      <div className="max-w-8xl mx-auto flex flex-col md:flex-row gap-8 px-6">
+        {/* Sticky Sidebar */}
+        <div className="md:w-75 w-full md:sticky md:top-20 h-fit">
+          <CategorySidebar
+            categories={categories}
+            selected={selected}
+            setSelected={setSelected}
+          />
         </div>
-        <motion.button
-          whileHover={{ scale: 1.06 }}
-          whileTap={{ scale: 0.97 }}
-          className="mt-3 px-5 py-2 bg-red-500 text-white font-medium rounded-lg shadow hover:bg-red-600 transition w-fit"
-        >
-          Order Now
-        </motion.button>
-      </div>
-    </motion.div>
-  ))}
-</motion.main>
 
-    </div>
+        {/* Main Content Area */}
+        <div className="md:w-3/4 w-full">
+          <motion.main
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          >
+            {filtered.map((product) => (
+              <motion.div
+                key={product.id}
+                variants={cardVariants}
+                className="flex flex-row w-full bg-white rounded-xl shadow border border-[#ffd64f] hover:shadow-lg transition overflow-hidden"
+              >
+                <img
+                  src={product.img}
+                  alt={product.name}
+                  className="w-36 h-36 object-cover flex-shrink-0"
+                />
+                <div className="flex-1 p-4 text-left flex flex-col justify-between min-h-[110px]">
+                  <div className="space-y-1">
+                    <h3 className="text-lg font-semibold text-gray-900">{product.name}</h3>
+                    <p className="text-gray-500 text-sm">{product.category}</p>
+                    <div className="text-green-700 font-medium">₹{product.price}</div>
+                  </div>
+                  <motion.button
+                    whileHover={{ scale: 1.06 }}
+                    whileTap={{ scale: 0.97 }}
+                    className="mt-3 px-5 py-2 bg-red-500 text-white font-medium rounded-lg shadow hover:bg-red-600 transition w-fit"
+                  >
+                    Order Now
+                  </motion.button>
+                </div>
+              </motion.div>
+            ))}
+          </motion.main>
+        </div>
+      </div>
     </section>
   );
 }
