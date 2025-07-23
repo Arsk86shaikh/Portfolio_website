@@ -70,23 +70,24 @@ export default function Menu() {
       </h2>
 
       {/* Smooth staggered animation */}
+      <div  className="md:w-3/4 w-full">
       <motion.div
   variants={containerVariants}
   initial="hidden"
   whileInView="visible"
   viewport={{ once: true, amount: 0.2 }}
-  className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 px-4"
+   className="grid grid-cols-1 md:grid-cols-2 gap-6"
 >
   {pizzas.map((pizza) => (
     <motion.div
       key={pizza.name}
       variants={cardVariants}
-     className="flex w-auto h-40 bg-white rounded-xl shadow border border-[#ffd64f] hover:shadow-lg transition overflow-hidden"
+ className="flex flex-row w-full bg-white rounded-xl shadow border border-[#ffd64f] hover:shadow-lg transition overflow-hidden"
     >
       <img
         src={pizza.img}
         alt={pizza.name}
-        className="w-40 h-full object-cover"
+       className="w-36 h-40 object-cover flex-shrink-0"
       />
       <div className="flex-1 p-4 text-left space-y-1">
         <h3 className="text-lg sm:text-xl font-semibold text-gray-900">
@@ -107,6 +108,7 @@ export default function Menu() {
     </motion.div>
   ))}
 </motion.div>
+  </div>
 
         {/* More Items Button */}
       <div className="flex justify-center mt-10">

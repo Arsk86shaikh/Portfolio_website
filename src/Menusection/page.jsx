@@ -130,7 +130,7 @@ export default function MenuPage() {
                 <img
                   src={product.img}
                   alt={product.name}
-                  className="w-36 h-36 object-cover flex-shrink-0"
+                  className="w-36 h-40 object-cover flex-shrink-0"
                 />
                 <div className="flex-1 p-4 text-left flex flex-col justify-between min-h-[110px]">
                   <div className="space-y-1">
