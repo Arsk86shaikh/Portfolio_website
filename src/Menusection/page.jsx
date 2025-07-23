@@ -114,43 +114,47 @@ export default function MenuPage() {
         </div>
 
         {/* Main Content Area */}
-        <div className="md:w-3/4 w-full">
-          <motion.main
+        {/* <div className="md:w-3/4 w-full"> */}
+          <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="w-full grid grid-cols-1 md:grid-cols-2 gap-6"
+            className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 "
           >
             {filtered.map((product) => (
               <motion.div
                 key={product.id}
                 variants={cardVariants}
-                className="flex flex-row w-full bg-white rounded-xl shadow border border-[#ffd64f] hover:shadow-lg transition overflow-hidden"
+                className="flex flex-row w-full bg-white rounded-xl shadow border border-[#ffd64f] hover:shadow-lg transition overflow-hidden min-h-[9.5rem]"
               >
                 <img
                   src={product.img}
                   alt={product.name}
                   className="w-36 h-40 object-cover flex-shrink-0"
                 />
-                <div className="flex-1 p-4 text-left flex flex-col justify-between min-h-[110px]">
-                  <div className="space-y-1">
-                    <h3 className="text-lg font-semibold text-gray-900">{product.name}</h3>
-                    <p className="text-gray-500 text-sm">{product.category}</p>
-                    <div className="text-green-700 font-medium">₹{product.price}</div>
-                  </div>
-                  <motion.button
-                    whileHover={{ scale: 1.06 }}
-                    whileTap={{ scale: 0.97 }}
-                    className="mt-3 px-5 py-2 bg-red-500 text-white font-medium rounded-lg shadow hover:bg-red-600 transition w-fit"
-                  >
-                    Order Now
-                  </motion.button>
+                  <div className="flex-1 p-4 text-left flex flex-col justify-between">
+              <div className="space-y-1">
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900">
+                  {product.name}
+                </h3>
+                <div className="text-green-700 font-medium">
+                  ₹{product.price.toLocaleString("en-IN")}
+                </div>
+                <p className="text-gray-600 text-sm sm:text-base">{product.desc}</p>
+              </div>
+                   <motion.button
+                whileHover={{ scale: 1.06 }}
+                whileTap={{ scale: 0.97 }}
+                className="mt-2 px-5 py-2 bg-red-500 text-white font-medium rounded-lg shadow hover:bg-red-600 transition w-fit"
+              >
+                Order
+              </motion.button>
                 </div>
               </motion.div>
             ))}
-          </motion.main>
+          </motion.div>
         </div>
-      </div>
+      {/* </div> */}
     </section>
   );
 }
