@@ -70,37 +70,38 @@ export default function Menu() {
       </h2>
 
       {/* Smooth staggered animation */}
-      <div  className="md:w-3/4 w-full">
-      <motion.div
+  <motion.div
   variants={containerVariants}
   initial="hidden"
   whileInView="visible"
   viewport={{ once: true, amount: 0.2 }}
-   className="grid grid-cols-1 md:grid-cols-2 gap-6"
+  className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 px-4"
 >
   {pizzas.map((pizza) => (
     <motion.div
       key={pizza.name}
       variants={cardVariants}
- className="flex flex-row w-full bg-white rounded-xl shadow border border-[#ffd64f] hover:shadow-lg transition overflow-hidden"
+      className="flex flex-row w-full bg-white rounded-xl shadow border border-[#ffd64f] hover:shadow-lg transition overflow-hidden min-h-[9.5rem]" // min-h-[152px] ≈ 38*4
     >
       <img
         src={pizza.img}
         alt={pizza.name}
-       className="w-36 h-40 object-cover flex-shrink-0"
+        className="w-36 h-40 object-cover flex-shrink-0"
       />
-      <div className="flex-1 p-4 text-left space-y-1">
-        <h3 className="text-lg sm:text-xl font-semibold text-gray-900">
-          {pizza.name}
-        </h3>
-        <div className="text-green-700 font-medium">
-          ₹{pizza.price.toLocaleString("en-IN")}
+      <div className="flex-1 p-4 text-left flex flex-col justify-between">
+        <div className="space-y-1">
+          <h3 className="text-lg sm:text-xl font-semibold text-gray-900">
+            {pizza.name}
+          </h3>
+          <div className="text-green-700 font-medium">
+            ₹{pizza.price.toLocaleString("en-IN")}
+          </div>
+          <p className="text-gray-600 text-sm sm:text-base">{pizza.desc}</p>
         </div>
-        <p className="text-gray-600 text-sm sm:text-base">{pizza.desc}</p>
         <motion.button
           whileHover={{ scale: 1.06 }}
           whileTap={{ scale: 0.97 }}
-          className="mt-1 px-5 py-2 bg-red-500 text-white font-medium rounded-lg shadow hover:bg-red-600 transition"
+          className="mt-2 px-5 py-2 bg-red-500 text-white font-medium rounded-lg shadow hover:bg-red-600 transition w-fit"
         >
           Order
         </motion.button>
@@ -108,7 +109,6 @@ export default function Menu() {
     </motion.div>
   ))}
 </motion.div>
-  </div>
 
         {/* More Items Button */}
       <div className="flex justify-center mt-10">
