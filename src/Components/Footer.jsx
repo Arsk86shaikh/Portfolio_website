@@ -54,7 +54,7 @@ export default function Footer() {
         <div className="mt-6 border-t border-white/20 pt-4 text-center text-sm text-white/70">
           <p>
             Designed & Developed by <span className="text-red-200 font-medium">
-              <a href="/terms" className="hover:text-yellow-300 underline transition-colors">
+              <a href="https://www.webtrio.in/" className="hover:text-yellow-300 underline transition-colors">
               WebTrio
               </a>
               </span>

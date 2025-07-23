@@ -5,10 +5,10 @@ export default function CategorySidebar({ categories, selected, setSelected }) {
   const [showDropdown, setShowDropdown] = useState(false);
 
   return (
-    <aside className="w-full md:w-1/4 bg-white shadow rounded-xl p-4">
+    <aside >
       {/* Header with toggle icon */}
-      <div className="flex items-center justify-between md:block">
-        <h2 className="text-xl font-semibold text-red-600 mb-2 md:mb-4">Categories</h2>
+      <div className=" w-auto flex items-center justify-between md:block">
+        <h2 className="text-2xl font-semibold text-red-600 mb-2 md:mb-4">Categories</h2>
 
         {/* Toggle button only for mobile */}
         <button
@@ -28,7 +28,7 @@ export default function CategorySidebar({ categories, selected, setSelected }) {
                 setSelected(cat);
                 setShowDropdown(false); // Auto close dropdown on mobile
               }}
-              className={`block w-full text-left px-4 py-2 rounded transition font-medium ${
+              className={`block w-60 text-left px-4 py-2 rounded transition font-medium ${
                 selected === cat
                   ? "bg-red-600 text-white"
                   : "hover:bg-gray-200 text-gray-700"

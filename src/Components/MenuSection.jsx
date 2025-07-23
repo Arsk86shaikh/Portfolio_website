@@ -81,12 +81,12 @@ export default function Menu() {
     <motion.div
       key={pizza.name}
       variants={cardVariants}
-      className="flex bg-white rounded-xl shadow border hover:shadow-lg transition border-[#ffd64f] overflow-hidden"
+     className="flex w-auto h-40 bg-white rounded-xl shadow border border-[#ffd64f] hover:shadow-lg transition overflow-hidden"
     >
       <img
         src={pizza.img}
         alt={pizza.name}
-        className="w-40 h-40 object-cover"
+        className="w-40 h-full object-cover"
       />
       <div className="flex-1 p-4 text-left space-y-1">
         <h3 className="text-lg sm:text-xl font-semibold text-gray-900">
@@ -99,7 +99,7 @@ export default function Menu() {
         <motion.button
           whileHover={{ scale: 1.06 }}
           whileTap={{ scale: 0.97 }}
-          className="mt-3 px-5 py-2 bg-red-500 text-white font-medium rounded-lg shadow hover:bg-red-600 transition"
+          className="mt-1 px-5 py-2 bg-red-500 text-white font-medium rounded-lg shadow hover:bg-red-600 transition"
         >
           Order
         </motion.button>
