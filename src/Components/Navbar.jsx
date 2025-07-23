@@ -11,7 +11,7 @@ export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 bg-white shadow">
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-        <div className="font-bold text-2xl text-red-600 cursor-pointer">
+        <div href="/" className="font-bold text-2xl text-red-600 cursor-pointer">
           Laziz Pizza 🍕
         </div>
         <div className="hidden md:flex gap-8 font-medium">
