@@ -3,12 +3,13 @@ import './App.css';
 import Navbar from './Components/Navbar';
 import HeroSection from './Components/HeroSection';
 import AboutSection from './Components/AboutSection';
-import MenuSection from './Components/MenuSection';
 // import ContactSection from './Components/ContactSection';
 import Footer from './Components/Footer';
-import Gallery from './Components/Gallery';
-import VisitUs from './Components/VisitUs';
-import MenuPage from "./Menusection/page";
+import SkillsAbilities from "./Components/Skills&Abilities";
+import Education from "./Components/Eductions";
+
+
+
 
 function App() {
   return (
@@ -20,13 +21,13 @@ function App() {
           <>
             <HeroSection />
             <AboutSection />
-            <Gallery />
-            <MenuSection />
+            <SkillsAbilities/>
+           <Education/>
             {/* <ContactSection /> */}
-            <VisitUs />
+          
           </>
         } />
-        <Route path="/menusection" element={<MenuPage />} />
+      
       </Routes>
       <Footer />
 

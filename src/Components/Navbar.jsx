@@ -1,7 +1,4 @@
-import React, { useState } from "react";
-
-// You may need to install Font Awesome React package for icons
-// Or use a CDN or SVG for icons if preferred
+import React, { useState, useEffect } from "react";
 
 const navLinks = [
   { href: "#skillsection", label: "Skills" },
@@ -20,7 +17,7 @@ const sidebarLinks = [
 
 export default function Header() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   // Toggle sidebar
   const toggleSidebar = () => setSidebarOpen((prev) => !prev);
@@ -28,55 +25,60 @@ export default function Header() {
   // Close sidebar
   const closeSidebar = () => setSidebarOpen(false);
 
-  // Toggle dark mode
-  const toggleMode = () => setDarkMode((prev) => !prev);
+  // Handle scroll for navbar background
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-  // // Apply dark mode to body and root html
-  // React.useEffect(() => {
-  //   document.body.classList.toggle("dark", darkMode);
-  //   document.documentElement.classList.toggle("dark", darkMode);
-  // }, [darkMode]);
-
-  // // Icon rendering
-  // const ModeIcon = () =>
-  //   darkMode ? (
-  //     <svg className="w-6 h-6 text-yellow-400 transition-transform duration-300 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-  //       <path d="M12 3v1m0 16v1m8.485-8.485l-.707.707M4.222 4.222l-.707.707M21 12h-1M4 12H3m16.485 4.485l-.707-.707M4.222 19.778l-.707-.707" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"/>
-  //     </svg>
-  //   ) : (
-  //     <svg className="w-6 h-6 text-gray-500 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-  //       <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"/>
-  //     </svg>
-  //   );
+  // Prevent body scroll when sidebar is open
+  useEffect(() => {
+    if (sidebarOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [sidebarOpen]);
 
   return (
-    <header className="w-full shadow-md bg-transparent z-50 fixed top-0 left-0">
-      <nav className="flex justify-between items-center px-6 py-4 bg-white/60 dark:bg-gray-900/60 backdrop-blur-md rounded-b-xl transition-colors duration-300">
-        {/* Logo in cursive pattern */}
+    <header className="w-full z-50 fixed top-0 left-0">
+      <nav
+        className={`flex justify-between items-center px-6 py-4 transition-all duration-500 ${
+          scrolled
+            ? "bg-black/80 backdrop-blur-lg shadow-lg shadow-amber-500/10"
+            : "bg-black/40 backdrop-blur-md"
+        }`}
+      >
+        {/* Logo */}
         <h1
-          className="text-2xl font-bold cursor-pointer text-gray-700 dark:text-gray-200 font-[Dancing Script, cursive] transition-colors duration-300"
+          className="text-2xl font-bold cursor-pointer text-white font-['Dancing_Script',_cursive] transition-all duration-300 hover:scale-105"
           style={{
             fontFamily: "'Dancing Script', cursive",
             fontWeight: "bold",
-            letterSpacing: "1px"
+            letterSpacing: "1px",
           }}
           onClick={() => (window.location.href = "/")}
         >
-          &lt; <span className="text-blue-500">Ar Developer</span> /&gt;
+          &lt; <span className="text-amber-500 drop-shadow-[0_0_8px_rgba(245,158,11,0.5)]">Ar Developer</span> /&gt;
         </h1>
 
         {/* Desktop nav links */}
-        <ul className="hidden md:flex space-x-6 items-center">
+        <ul className="hidden md:flex space-x-8 items-center">
           {navLinks.map((link, idx) => (
-            <li key={idx}>
+            <li key={idx} className="group">
               <a
                 href={link.href}
-                className="relative text-gray-800 dark:text-gray-100 hover:text-blue-500 transition-colors duration-200
-                  after:absolute after:left-0 after:-bottom-1 after:w-full after:h-0.5 after:bg-blue-500
-                  after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:origin-left"
-                style={{
-                  position: "relative",
-                }}
+                className="relative text-white/90 hover:text-amber-500 transition-all duration-300 font-medium
+                  after:absolute after:left-0 after:-bottom-1 after:w-full after:h-0.5 
+                  after:bg-gradient-to-r after:from-amber-500 after:to-orange-500
+                  after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left
+                  hover:drop-shadow-[0_0_8px_rgba(245,158,11,0.3)]"
                 download={link.download ? true : undefined}
               >
                 {link.label}
@@ -85,72 +87,113 @@ export default function Header() {
           ))}
         </ul>
 
-        {/* Mode toggle */}
-        {/* <button
-          className="ml-4 p-2 rounded-full hover:bg-blue-200 dark:hover:bg-gray-800 transition-colors duration-200"
-          onClick={toggleMode}
-          aria-label="Toggle Dark Mode"
-        >
-          <ModeIcon />
-        </button> */}
-
-        {/* Hamburger */}
+        {/* Hamburger with animation */}
         <button
-          className="md:hidden ml-4 p-2"
+          className={`md:hidden ml-4 p-2 relative w-10 h-10 flex flex-col items-center justify-center transition-all duration-300 hover:scale-110 ${
+            sidebarOpen ? "rotate-90" : ""
+          }`}
           onClick={toggleSidebar}
-          aria-label="Open Sidebar"
+          aria-label="Toggle Menu"
         >
-          <svg className="w-7 h-7 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" d="M4 8h16M4 16h16"/>
-          </svg>
+          <span
+            className={`w-6 h-0.5 bg-white rounded-full transition-all duration-300 ${
+              sidebarOpen ? "rotate-45 translate-y-1.5" : ""
+            }`}
+          />
+          <span
+            className={`w-6 h-0.5 bg-white rounded-full my-1 transition-all duration-300 ${
+              sidebarOpen ? "opacity-0" : "opacity-100"
+            }`}
+          />
+          <span
+            className={`w-6 h-0.5 bg-white rounded-full transition-all duration-300 ${
+              sidebarOpen ? "-rotate-45 -translate-y-1.5" : ""
+            }`}
+          />
         </button>
       </nav>
 
-      {/* Sidebar Overlay */}
+      {/* Sidebar Overlay with fade animation */}
       <div
-        className={`fixed inset-0 bg-black bg-opacity-40 z-40 transition-opacity duration-200 ${
-          sidebarOpen ? "opacity-100 visible" : "opacity-0 invisible"
+        className={`fixed inset-0 bg-black z-40 transition-all duration-300 ${
+          sidebarOpen ? "bg-opacity-70 visible" : "bg-opacity-0 invisible"
         }`}
         onClick={closeSidebar}
-        aria-label="Close Sidebar Overlay"
+        aria-label="Close Sidebar"
       />
 
-      {/* Sidebar (Transparent Theme) */}
+      {/* Sidebar with slide and fade animation */}
       <aside
-        className={`fixed top-0 right-0 w-72 h-full bg-white/60 dark:bg-gray-900/60 backdrop-blur-md shadow-lg z-50 transition-transform duration-300 ${
-          sidebarOpen ? "translate-x-0" : "translate-x-full"
+        className={`fixed top-0 right-0 w-80 h-full bg-black/90 backdrop-blur-xl shadow-2xl shadow-amber-500/20 z-50 
+          border-l border-amber-500/20 transition-all duration-500 ease-out ${
+          sidebarOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
         }`}
-        id="sidebar"
       >
-        <div className="flex flex-col h-full p-6">
-          <ul className="space-y-5 mb-10">
+        <div className="flex flex-col h-full p-8">
+          {/* Sidebar header */}
+          <div className="mb-8 pb-6 border-b border-amber-500/30">
+            <h2 className="text-2xl font-bold text-white mb-1">Menu</h2>
+            <div className="w-16 h-1 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full"></div>
+          </div>
+
+          {/* Navigation links with stagger animation */}
+          <ul className="space-y-2 mb-auto">
             {sidebarLinks.map((link, idx) => (
-              <li key={idx}>
+              <li
+                key={idx}
+                className={`transform transition-all duration-500 ${
+                  sidebarOpen ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"
+                }`}
+                style={{ transitionDelay: sidebarOpen ? `${idx * 50}ms` : "0ms" }}
+              >
                 <a
                   href={link.href}
-                  className="block text-gray-900 dark:text-gray-100 hover:text-blue-500 transition-colors duration-200
-                    relative after:absolute after:left-0 after:-bottom-1 after:w-full after:h-0.5 after:bg-blue-500
-                    after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:origin-left"
-                  style={{
-                    position: "relative",
-                  }}
+                  className="block text-white/90 hover:text-amber-500 transition-all duration-300 py-3 px-4 rounded-lg
+                    hover:bg-amber-500/10 hover:translate-x-2 group relative overflow-hidden"
                   download={link.download ? true : undefined}
                   onClick={closeSidebar}
                 >
-                  {link.label}
+                  <span className="relative z-10 font-medium">{link.label}</span>
+                  <span className="absolute left-0 top-0 w-1 h-full bg-gradient-to-b from-amber-500 to-orange-500 
+                    transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top"></span>
                 </a>
               </li>
             ))}
           </ul>
-          <div className="flex flex-col gap-3 mt-auto">
-            <a href="#ContactMe" className="btn btn-primary bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition">
+
+          {/* Action buttons with stagger animation */}
+          <div className="flex flex-col gap-3 pt-6 border-t border-amber-500/30">
+            <a
+              href="#ContactMe"
+              className={`bg-amber-500 hover:bg-amber-600 text-black font-semibold py-3 px-6 rounded-lg 
+                transition-all duration-300 hover:shadow-lg hover:shadow-amber-500/50 hover:scale-105
+                transform ${sidebarOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}
+              style={{ transitionDelay: sidebarOpen ? "350ms" : "0ms" }}
+              onClick={closeSidebar}
+            >
               Contact Me
             </a>
-            <a href="#opensource" className="btn btn-secondary bg-gray-800 text-white py-2 rounded hover:bg-gray-700 transition">
+            <a
+              href="#opensource"
+              className={`bg-white/10 hover:bg-white/20 text-white font-semibold py-3 px-6 rounded-lg 
+                border border-amber-500/30 transition-all duration-300 hover:border-amber-500 hover:scale-105
+                transform ${sidebarOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}
+              style={{ transitionDelay: sidebarOpen ? "400ms" : "0ms" }}
+              onClick={closeSidebar}
+            >
               View My Projects
             </a>
-            <a href="/Resume.pdf" className="btn btn-success bg-purple-500 text-white py-2 rounded hover:bg-purple-600 transition" download>
-              📄 Download Resume
+            <a
+              href="/Resume.pdf"
+              className={`bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 
+                text-black font-semibold py-3 px-6 rounded-lg transition-all duration-300 
+                hover:shadow-lg hover:shadow-orange-500/50 hover:scale-105 flex items-center justify-center gap-2
+                transform ${sidebarOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}
+              style={{ transitionDelay: sidebarOpen ? "450ms" : "0ms" }}
+              download
+              onClick={closeSidebar}
+            >
+              <span>📄</span> Download Resume
             </a>
           </div>
         </div>
