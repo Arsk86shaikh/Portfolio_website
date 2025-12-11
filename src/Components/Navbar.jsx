@@ -15,7 +15,7 @@ const sidebarLinks = [
   { href: "#contact", label: "Contact Me" }
 ];
 
-export default function Header() {
+export default function Navbar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -113,21 +113,19 @@ export default function Header() {
         </button>
       </nav>
 
-      {/* Sidebar Overlay with fade animation */}
+      {/* Sidebar Overlay (no animation) */}
       <div
-        className={`fixed inset-0 bg-black z-40 transition-all duration-300 ${
-          sidebarOpen ? "bg-opacity-70 visible" : "bg-opacity-0 invisible"
+        className={`fixed inset-0 bg-black z-40 ${
+          sidebarOpen ? "bg-opacity-70 visible" : "bg-opacity-0 invisible pointer-events-none"
         }`}
         onClick={closeSidebar}
         aria-label="Close Sidebar"
       />
 
-      {/* Sidebar with slide and fade animation */}
+      {/* Sidebar (fixed position, no slide animation) */}
       <aside
         className={`fixed top-0 right-0 w-80 h-full bg-black/90 backdrop-blur-xl shadow-2xl shadow-amber-500/20 z-50 
-          border-l border-amber-500/20 transition-all duration-500 ease-out ${
-          sidebarOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
-        }`}
+          border-l border-amber-500/20 ${sidebarOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"}`}
       >
         <div className="flex flex-col h-full p-8">
           {/* Sidebar header */}
@@ -136,16 +134,10 @@ export default function Header() {
             <div className="w-16 h-1 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full"></div>
           </div>
 
-          {/* Navigation links with stagger animation */}
+          {/* Navigation links (no stagger animation) */}
           <ul className="space-y-2 mb-auto">
             {sidebarLinks.map((link, idx) => (
-              <li
-                key={idx}
-                className={`transform transition-all duration-500 ${
-                  sidebarOpen ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"
-                }`}
-                style={{ transitionDelay: sidebarOpen ? `${idx * 50}ms` : "0ms" }}
-              >
+              <li key={idx}>
                 <a
                   href={link.href}
                   className="block text-white/90 hover:text-amber-500 transition-all duration-300 py-3 px-4 rounded-lg
@@ -161,35 +153,29 @@ export default function Header() {
             ))}
           </ul>
 
-          {/* Action buttons with stagger animation */}
+          {/* Action buttons (no stagger animation) */}
           <div className="flex flex-col gap-3 pt-6 border-t border-amber-500/30">
             <a
               href="#ContactMe"
-              className={`bg-amber-500 hover:bg-amber-600 text-black font-semibold py-3 px-6 rounded-lg 
-                transition-all duration-300 hover:shadow-lg hover:shadow-amber-500/50 hover:scale-105
-                transform ${sidebarOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}
-              style={{ transitionDelay: sidebarOpen ? "350ms" : "0ms" }}
+              className="bg-amber-500 hover:bg-amber-600 text-black font-semibold py-3 px-6 rounded-lg 
+                transition-all duration-300 hover:shadow-lg hover:shadow-amber-500/50 hover:scale-105"
               onClick={closeSidebar}
             >
               Contact Me
             </a>
             <a
               href="#opensource"
-              className={`bg-white/10 hover:bg-white/20 text-white font-semibold py-3 px-6 rounded-lg 
-                border border-amber-500/30 transition-all duration-300 hover:border-amber-500 hover:scale-105
-                transform ${sidebarOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}
-              style={{ transitionDelay: sidebarOpen ? "400ms" : "0ms" }}
+              className="bg-white/10 hover:bg-white/20 text-white font-semibold py-3 px-6 rounded-lg 
+                border border-amber-500/30 transition-all duration-300 hover:border-amber-500 hover:scale-105"
               onClick={closeSidebar}
             >
               View My Projects
             </a>
             <a
               href="/Resume.pdf"
-              className={`bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 
+              className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 
                 text-black font-semibold py-3 px-6 rounded-lg transition-all duration-300 
-                hover:shadow-lg hover:shadow-orange-500/50 hover:scale-105 flex items-center justify-center gap-2
-                transform ${sidebarOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}
-              style={{ transitionDelay: sidebarOpen ? "450ms" : "0ms" }}
+                hover:shadow-lg hover:shadow-orange-500/50 hover:scale-105 flex items-center justify-center gap-2"
               download
               onClick={closeSidebar}
             >
