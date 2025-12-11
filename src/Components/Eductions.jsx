@@ -1,45 +1,45 @@
 import React from 'react';
 
 const Education = () => {
-  // Education data structured in JSON
-  const educationData = [
-    {
-      id: 1,
-      degree: "Bachelor of Technology in Computer Science and Engineering",
-      institution: "Shri Shivaji Institute of Engineering and Management Studies, Parbhani",
-      university: "Dr.BATU Lonere",
-      duration: "2022 - 2026",
-      status: "Pursuing (Final Year)",
-      score: "7.14",
-      scoreLabel: "Total 1st-6th Sem. CGPA",
-      image: "./assets/images/educat/college.jpg",
-      icon: "fas fa-graduation-cap"
-    },
-    {
-      id: 2,
-      degree: "HSC Science | (11th-12th) Informatics Practices",
-      institution: "Dnyanopasak College of Arts, Commerce, Science, and Technology, Bori Parbhani",
-      university: "MSBSHSE",
-      duration: "2 Years",
-      status: "Completed: 2022",
-      score: "63%",
-      scoreLabel: "Percentage",
-      image: "./assets/images/educat/Science.jpg",
-      icon: "fas fa-book"
-    },
-    {
-      id: 3,
-      degree: "SSC | (1st-10th) General Education",
-      institution: "Mahatma Fule Vidyalaya, Parbhani",
-      university: "MSBSHSE",
-      duration: "10 Years",
-      status: "Completed: 2020",
-      score: "82.40%",
-      scoreLabel: "Percentage",
-      image: "./assets/images/educat/school.jpg",
-      icon: "fas fa-school"
-    }
-  ];
+const educationData = [
+  {
+    id: 1,
+    degree: "Bachelor of Technology in Computer Science and Engineering",
+    institution: "Shri Shivaji Institute of Engineering and Management Studies, Parbhani",
+    university: "Dr.BATU Lonere",
+    duration: "2022 - 2026",
+    status: "Pursuing (Final Year)",
+    score: "7.14",
+    scoreLabel: "Total 1st-6th Sem. CGPA",
+    image: new URL("../assets/images/educat/college.jpg", import.meta.url).href,
+    icon: "fas fa-graduation-cap"
+  },
+  {
+    id: 2,
+    degree: "HSC Science | Informatics Practices",
+    institution: "Dnyanopasak College, Bori Parbhani",
+    university: "MSBSHSE",
+    duration: "2 Years",
+    status: "Completed: 2022",
+    score: "63%",
+    scoreLabel: "Percentage",
+    image: new URL("../assets/images/educat/Science.jpg", import.meta.url).href,
+    icon: "fas fa-book"
+  },
+  {
+    id: 3,
+    degree: "SSC | General Education",
+    institution: "Mahatma Fule Vidyalaya, Parbhani",
+    university: "MSBSHSE",
+    duration: "10 Years",
+    status: "Completed: 2020",
+    score: "82.40%",
+    scoreLabel: "Percentage",
+    image: new URL("../assets/images/educat/school.jpg", import.meta.url).href,
+    icon: "fas fa-school"
+  }
+];
+
 
   const quote = "Education is not the learning of facts, but the training of the mind to think.";
 

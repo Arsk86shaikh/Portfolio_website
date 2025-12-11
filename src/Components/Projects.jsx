@@ -10,9 +10,9 @@ const Projects = () => {
     id: 1,
     title: "BookNoteHub",
     description:
-      "A full-stack web application to track and manage non-fiction books. Users can add notes, ratings, and track their reading history with PostgreSQL database support.",
+      "A full-stack web application to track and manage non-fiction books.",
     techStack: ["EJS", "TailwindCSS", "JavaScript", "Node.js", "Express.js", "PostgreSQL"],
-    image: "/assets/images/projects/bookmanagement.png",
+    image: new URL("../assets/images/projects/bookmanagement.png", import.meta.url).href,
     link: "https://github.com/Arsk86shaikh/BookNoteHub",
     github: "https://github.com/Arsk86shaikh/BookNoteHub",
     category: "Full Stack",
@@ -22,9 +22,9 @@ const Projects = () => {
     id: 2,
     title: "DeCodeX",
     description:
-      "An AI-powered modern coding platform built with React and OpenRouter AI APIs, providing real-time coding assistance and intelligent developer tools.",
-    techStack: ["React.js", "Node.js", "Express.js", "TailwindCSS", "OpenRouter AI API"],
-    image: "/assets/images/projects/Decodex.png",
+      "AI-powered modern coding platform with OpenRouter APIs.",
+    techStack: ["React.js", "Node.js", "Express.js", "TailwindCSS"],
+    image: new URL("../assets/images/projects/Decodex.png", import.meta.url).href,
     link: "https://github.com/Saadsyed07/DeCodeX",
     github: "https://github.com/Saadsyed07/DeCodeX",
     category: "Full Stack",
@@ -34,9 +34,9 @@ const Projects = () => {
     id: 3,
     title: "Portfolio Website",
     description:
-      "A personal portfolio website showcasing projects, skills, and contact information, designed with responsive styling and modern UI components.",
-    techStack: ["HTML5", "CSS3", "JavaScript", "jQuery"],
-    image: "/assets/images/projects/portfoliowebsite.png",
+      "Responsive personal portfolio.",
+    techStack: ["HTML5", "CSS3", "JavaScript"],
+    image: new URL("../assets/images/projects/portfoliowebsite.png", import.meta.url).href,
     link: "https://my-portfolio-alpha-eosin-43.vercel.app/",
     github: "https://github.com/Arsk86shaikh/MyPortfolio/tree/main",
     category: "Frontend",
@@ -46,9 +46,9 @@ const Projects = () => {
     id: 4,
     title: "AI Voice Agent",
     description:
-      "An intelligent voice assistant built using Murf AI API with Python backend and Pandas for data handling. The frontend is created with HTML, CSS, and JavaScript for interactive user experience.",
-    techStack: ["Python", "Pandas", "HTML5", "CSS3", "JavaScript", "Murf AI API"],
-    image: "/assets/images/projects/aiagent.png",
+      "Voice assistant using Murf AI API.",
+    techStack: ["Python", "HTML5", "CSS3", "JavaScript"],
+    image: new URL("../assets/images/projects/aiagent.png", import.meta.url).href,
     link: "https://github.com/Arsk86shaikh/Ai-Voice-Agent",
     github: "https://github.com/Arsk86shaikh/Ai-Voice-Agent",
     category: "AI/ML",
@@ -58,51 +58,52 @@ const Projects = () => {
     id: 5,
     title: "E-Commerce Web",
     description:
-      "A responsive e-commerce web application built with Node.js, Express.js, and EJS, featuring product browsing, add-to-cart, and purchase functionality with a modern UI design.",
-    techStack: ["EJS", "CSS3", "JavaScript", "JSON", "Express.js", "Node.js"],
-    image: "/assets/images/projects/ecommerce.jpg",
+      "Responsive E-commerce website.",
+    techStack: ["EJS", "CSS3", "JavaScript"],
+    image: new URL("../assets/images/projects/ecommerce.jpg", import.meta.url).href,
     link: "https://github.com/Arsk86shaikh/E-commerce_web",
     github: "https://github.com/Arsk86shaikh/E-commerce_web",
-    category: "Frontend + Backend ",
+    category: "Frontend + Backend",
     featured: false
   },
   {
     id: 6,
     title: "Portfolio Website",
     description:
-      "A personal portfolio website showcasing projects, skills, and contact information, designed with responsive styling and modern UI components.",
-    techStack: ["EJS", "TailwindCSS", "CSS3", "JavaScript (ES6)", "Node.js"],
-    image: "/assets/images/projects/portfolio.jpg",
+      "Portfolio with Node & EJS.",
+    techStack: ["EJS", "CSS3", "JavaScript"],
+    image: new URL("../assets/images/projects/portfolio.jpg", import.meta.url).href,
     link: "https://github.com/Arsk86shaikh/portfolio-website",
     github: "https://github.com/Arsk86shaikh/portfolio-website",
-    category: "Frontend + Backend ",
+    category: "Frontend + Backend",
     featured: false
   },
   {
     id: 7,
     title: "Blog Platform",
     description:
-      "A dynamic blogging web application allowing users to create, edit, and manage posts with EJS templates and Express routing on the backend.",
-    techStack: ["EJS", "JavaScript", "Node.js", "Express.js"],
-    image: "/assets/images/projects/bloggram.png",
+      "Dynamic blogging platform.",
+    techStack: ["EJS", "JavaScript", "Node.js"],
+    image: new URL("../assets/images/projects/bloggram.png", import.meta.url).href,
     link: "https://github.com/Arsk86shaikh/blog",
     github: "https://github.com/Arsk86shaikh/blog",
-    category: "Frontend + Backend ",
+    category: "Frontend + Backend",
     featured: false
   },
   {
     id: 8,
     title: "Fanta Product Showcase",
     description:
-      "An interactive single-page website for showcasing Fanta products, featuring smooth animations, dynamic data loading using JSON, and a colorful modern UI.",
-    techStack: ["HTML5", "CSS3", "JavaScript", "JSON"],
-    image: "/assets/images/projects/fanta.png",
+      "Animated product showcase.",
+    techStack: ["HTML5", "CSS3", "JavaScript"],
+    image: new URL("../assets/images/projects/fanta.png", import.meta.url).href,
     link: "https://fanta-product-sale-website.vercel.app/",
     github: "https://fanta-product-sale-website.vercel.app/",
     category: "Frontend",
     featured: false
   }
 ];
+
 
 
   const categories = ['All', 'Full Stack','Frontend + Backend ', 'Frontend', 'AI/ML'];
