@@ -105,7 +105,7 @@ const certificatesData = [
         <div className="text-center mb-16">
           <div className="inline-block relative mb-4">
             <h2 className="text-5xl md:text-6xl font-bold text-white">
-              Certificates & <span className="text-amber-500">Achievements</span>
+              Course & <span className="text-amber-500">Certificates</span>
             </h2>
             <div className="absolute -bottom-2 left-0 right-0 h-1 bg-amber-500 rounded-full"></div>
           </div>

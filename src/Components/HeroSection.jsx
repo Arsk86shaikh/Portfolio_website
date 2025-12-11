@@ -68,7 +68,7 @@ const HERO_DATA = {
   ],
   actions: [
     { text: "Contact Me", href: "#contact", variant: "primary" },
-    { text: "View Projects", href: "#projacts", variant: "secondary" },
+    { text: "View Projects", href: "#projects", variant: "secondary" },
     { text: "Download Resume", href: "/Resume.pdf", variant: "outline", download: true }
   ]
 };
