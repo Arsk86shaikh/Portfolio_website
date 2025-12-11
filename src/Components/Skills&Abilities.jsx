@@ -59,16 +59,16 @@ const SkillsAbilities = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white py-16 px-4 sm:px-6 lg:px-8">
+    <div id='skillsection' className="min-h-screen bg-black text-white py-16 px-4 sm:px-6 lg:px-8">
       <link 
         rel="stylesheet" 
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
       />
       
-      <div className="max-w-7xl mx-auto">
+      <div  className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold mb-4">
+          <h1  className="text-5xl font-bold mb-4">
             Skills & <span className="text-amber-500">Abilities</span>
           </h1>
           <div className="w-24 h-1 bg-amber-500 mx-auto"></div>

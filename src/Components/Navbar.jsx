@@ -4,15 +4,15 @@ const navLinks = [
   { href: "#skillsection", label: "Skills" },
   { href: "#about", label: "About" },
   { href: "#education", label: "Education" },
-  { href: "#achievementsection", label: "Achievements" },
-  { href: "#opensource", label: "Projects" },
+  { href: "#certificates", label: "Certificates" },
+  { href: "#projects", label: "Projects" },
   { href: "/Resume.pdf", label: "Resume", download: true },
-  { href: "#ContactMe", label: "Contact Me" },
+  { href: "#contact", label: "Contact Me" },
 ];
 
 const sidebarLinks = [
   ...navLinks.slice(0, 6),
-  { href: "#ContactMe", label: "Contact Me" }
+  { href: "#contact", label: "Contact Me" }
 ];
 
 export default function Header() {

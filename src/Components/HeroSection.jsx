@@ -6,6 +6,73 @@ const ACCENT_ORANGE_HOVER = "hover:bg-amber-600";
 const WHITE_HEADING = "text-white";
 const FULL_BLEED_BG = "bg-black";
 
+// Move hero data outside the component so references are stable across renders
+const HERO_DATA = {
+  name: "Raheman",
+  greeting: "Hi Folks, It's",
+  roles: [
+    "Frontend Developer",
+    "Backend Developer",
+    "Software Developer",
+    "Technical Team Lead DDSC",
+    "Full Stack Enthusiast",
+  ],
+  about: {
+    position: "Technical Team Lead",
+    organization: "DCODE Club (DDSC)",
+    organizationLink: "https://www.dcode.club/",
+    focus: "full stack development, DSA, web projects, and peer programming",
+    values: "clean design, collaboration, and continuous learning"
+  },
+  socials: [
+    {
+      name: "GitHub",
+      url: "https://github.com/Arsk86shaikh",
+      icon: "github",
+      bgColor: "bg-gray-800",
+      hoverColor: "hover:bg-gray-700",
+      textColor: "text-white"
+    },
+    {
+      name: "Email",
+      url: "mailto:ar4868904@gmail.com",
+      icon: "email",
+      bgColor: "bg-amber-500",
+      hoverColor: "hover:bg-amber-600",
+      textColor: "text-white"
+    },
+    {
+      name: "LinkedIn",
+      url: "https://www.linkedin.com/in/ab-raheman-shaikh-66634025b/",
+      icon: "linkedin",
+      bgColor: "bg-blue-600",
+      hoverColor: "hover:bg-blue-700",
+      textColor: "text-white"
+    },
+    {
+      name: "LeetCode",
+      url: "https://leetcode.com/u/Vq4SMwEwak/",
+      icon: "leetcode",
+      bgColor: "bg-yellow-500",
+      hoverColor: "hover:bg-yellow-600",
+      textColor: "text-white"
+    },
+    {
+      name: "HackerRank",
+      url: "https://www.hackerrank.com/profile/ar4868904",
+      icon: "hackerrank",
+      bgColor: "bg-green-600",
+      hoverColor: "hover:bg-green-700",
+      textColor: "text-white"
+    }
+  ],
+  actions: [
+    { text: "Contact Me", href: "#contact", variant: "primary" },
+    { text: "View Projects", href: "#projacts", variant: "secondary" },
+    { text: "Download Resume", href: "/Resume.pdf", variant: "outline", download: true }
+  ]
+};
+
 // Typewriter hook
 function useTypewriter(roles, speed = 100, pause = 1500) {
   const [displayed, setDisplayed] = useState("");
@@ -15,9 +82,11 @@ function useTypewriter(roles, speed = 100, pause = 1500) {
 
   useEffect(() => {
     let timeout;
-    if (!isDeleting && charIdx < roles[roleIdx].length) {
+    const currentRole = roles[roleIdx];
+
+    if (!isDeleting && charIdx < currentRole.length) {
       timeout = setTimeout(() => {
-        setDisplayed((prev) => prev + roles[roleIdx][charIdx]);
+        setDisplayed((prev) => prev + currentRole[charIdx]);
         setCharIdx((prev) => prev + 1);
       }, speed);
     } else if (isDeleting && charIdx > 0) {
@@ -25,7 +94,7 @@ function useTypewriter(roles, speed = 100, pause = 1500) {
         setDisplayed((prev) => prev.slice(0, -1));
         setCharIdx((prev) => prev - 1);
       }, speed);
-    } else if (!isDeleting && charIdx === roles[roleIdx].length) {
+    } else if (!isDeleting && charIdx === currentRole.length) {
       timeout = setTimeout(() => setIsDeleting(true), pause);
     } else if (isDeleting && charIdx === 0) {
       timeout = setTimeout(() => {
@@ -42,73 +111,7 @@ function useTypewriter(roles, speed = 100, pause = 1500) {
 export default function HeroSection() {
   const [mounted, setMounted] = useState(false);
 
-  // Hero data structure
-  const heroData = {
-    name: "Raheman",
-    greeting: "Hi Folks, It's",
-    roles: [
-      "Frontend Developer",
-      "Backend Developer",
-      "Software Developer",
-      "Technical Team Lead DDSC",
-      "Full Stack Enthusiast",
-    ],
-    about: {
-      position: "Technical Team Lead",
-      organization: "DCODE Club (DDSC)",
-      organizationLink: "https://www.dcode.club/",
-      focus: "full stack development, DSA, web projects, and peer programming",
-      values: "clean design, collaboration, and continuous learning"
-    },
-    socials: [
-      {
-        name: "GitHub",
-        url: "https://github.com/Arsk86shaikh",
-        icon: "github",
-        bgColor: "bg-gray-800",
-        hoverColor: "hover:bg-gray-700",
-        textColor: "text-white"
-      },
-      {
-        name: "Email",
-        url: "mailto:ar4868904@gmail.com",
-        icon: "email",
-        bgColor: "bg-amber-500",
-        hoverColor: "hover:bg-amber-600",
-        textColor: "text-white"
-      },
-      {
-        name: "LinkedIn",
-        url: "https://www.linkedin.com/in/ab-raheman-shaikh-66634025b/",
-        icon: "linkedin",
-        bgColor: "bg-blue-600",
-        hoverColor: "hover:bg-blue-700",
-        textColor: "text-white"
-      },
-      {
-        name: "LeetCode",
-        url: "https://leetcode.com/u/Vq4SMwEwak/",
-        icon: "leetcode",
-        bgColor: "bg-yellow-500",
-        hoverColor: "hover:bg-yellow-600",
-        textColor: "text-white"
-      },
-      {
-        name: "HackerRank",
-        url: "https://www.hackerrank.com/profile/ar4868904",
-        icon: "hackerrank",
-        bgColor: "bg-green-600",
-        hoverColor: "hover:bg-green-700",
-        textColor: "text-white"
-      }
-    ],
-    actions: [
-      { text: "Contact Me", href: "#ContactMe", variant: "primary" },
-      { text: "View Projects", href: "#opensource", variant: "secondary" },
-      { text: "Download Resume", href: "/Resume.pdf", variant: "outline", download: true }
-    ]
-  };
-
+  const heroData = HERO_DATA; // stable reference
   const typedRole = useTypewriter(heroData.roles, 75, 1200);
 
   useEffect(() => {
@@ -158,8 +161,8 @@ export default function HeroSection() {
     <section className={`${FULL_BLEED_BG} w-full pt-20 sm:pt-24 md:pt-28 pb-8 sm:pb-12 flex justify-center items-center transition-colors duration-300 min-h-screen relative overflow-hidden`}>
       {/* Animated Background Elements - Hidden on small devices for performance */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none hidden sm:block">
-        <div className="absolute top-10 sm:top-20 left-5 sm:left-10 w-48 h-48 sm:w-72 sm:h-72 bg-amber-500/10 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-10 sm:bottom-20 right-5 sm:right-10 w-64 h-64 sm:w-96 sm:h-96 bg-orange-500/10 rounded-full blur-3xl animate-float-delayed"></div>
+        <div className="absolute top-10 sm:top-20 left-5 sm:left-10 w-48 h-48 sm:w-72 sm:h-72 bg-amber-500/10 rounded-full blur-3xl hero-animate-float"></div>
+        <div className="absolute bottom-10 sm:bottom-20 right-5 sm:right-10 w-64 h-64 sm:w-96 sm:h-96 bg-orange-500/10 rounded-full blur-3xl hero-animate-float-delayed"></div>
       </div>
 
       <div className="max-w-7xl w-full flex flex-col-reverse lg:flex-row items-center justify-between px-4 sm:px-6 md:px-10 gap-8 sm:gap-10 lg:gap-12 relative z-10">
@@ -170,7 +173,7 @@ export default function HeroSection() {
             <p className="text-gray-400 text-sm sm:text-base md:text-lg mb-1 sm:mb-2">{heroData.greeting}</p>
             <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold ${WHITE_HEADING} flex flex-wrap items-center justify-center lg:justify-start gap-2 sm:gap-3`}>
               {heroData.name}
-              <span className="wave-emoji inline-block animate-wave text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
+              <span className="hero-animate-wave inline-block animate-none text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
                 👋
               </span>
             </h1>
@@ -180,7 +183,7 @@ export default function HeroSection() {
           <div className="mb-6 sm:mb-8 min-h-[2.5rem] sm:min-h-[3rem] text-center lg:text-left w-full">
             <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-amber-500 font-mono break-words">
               {typedRole}
-              <span className="animate-blink text-amber-500">|</span>
+              <span className="hero-animate-blink text-amber-500">|</span>
             </span>
           </div>
 
@@ -246,15 +249,15 @@ export default function HeroSection() {
         {/* RIGHT SECTION: 3D Animated Illustration */}
         <div className={`w-full lg:w-1/2 flex justify-center items-center relative transition-all duration-700 delay-300 ${mounted ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
           {/* Animated Gradient Background - Subtle on mobile */}
-          <div className="absolute inset-0 z-0 rounded-full blur-2xl sm:blur-3xl bg-gradient-to-br from-amber-500/20 via-orange-500/10 to-pink-500/5 sm:from-amber-500/30 sm:via-orange-500/20 sm:to-pink-500/10 animate-pulse-slow"></div>
+          <div className="absolute inset-0 z-0 rounded-full blur-2xl sm:blur-3xl bg-gradient-to-br from-amber-500/20 via-orange-500/10 to-pink-500/5 sm:from-amber-500/30 sm:via-orange-500/20 sm:to-pink-500/10 hero-animate-pulse-slow"></div>
           
           {/* Rotating Border - Responsive sizing */}
           <div className="relative w-[280px] h-[280px] sm:w-[340px] sm:h-[340px] md:w-[400px] md:h-[400px] lg:w-[450px] lg:h-[450px] xl:w-[500px] xl:h-[500px]">
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 animate-spin-slow opacity-50"></div>
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 hero-animate-spin-slow opacity-50"></div>
             <div className="absolute inset-1 rounded-full bg-black flex items-center justify-center overflow-hidden">
               {/* Developer Illustration */}
               <div className="relative w-full h-full flex items-center justify-center p-4 sm:p-6">
-                <svg className="w-full h-full max-w-[250px] max-h-[250px] sm:max-w-[300px] sm:max-h-[300px] animate-float" viewBox="0 0 500 500" fill="none">
+                <svg className="w-full h-full max-w-[250px] max-h-[250px] sm:max-w-[300px] sm:max-h-[300px] hero-animate-float" viewBox="0 0 500 500" fill="none">
                   {/* Laptop */}
                   <rect x="100" y="200" width="300" height="200" rx="10" fill="#1f2937" stroke="#f59e0b" strokeWidth="3"/>
                   <rect x="120" y="220" width="260" height="140" fill="#0a0a0a"/>
@@ -274,12 +277,12 @@ export default function HeroSection() {
             </div>
             
             {/* Floating Icons - Hidden on very small screens */}
-            <div className="hidden sm:block absolute top-5 md:top-10 -right-5 md:-right-10 bg-amber-500 rounded-full p-2 md:p-3 animate-bounce-slow shadow-lg">
+            <div className="hidden sm:block absolute top-5 md:top-10 -right-5 md:-right-10 bg-amber-500 rounded-full p-2 md:p-3 hero-animate-bounce-slow shadow-lg">
               <svg className="w-4 h-4 md:w-6 md:h-6 text-black" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd"/>
               </svg>
             </div>
-            <div className="hidden sm:block absolute -bottom-3 md:-bottom-5 -left-5 md:-left-10 bg-orange-500 rounded-full p-2 md:p-3 animate-float shadow-lg">
+            <div className="hidden sm:block absolute -bottom-3 md:-bottom-5 -left-5 md:-left-10 bg-orange-500 rounded-full p-2 md:p-3 hero-animate-float shadow-lg">
               <svg className="w-4 h-4 md:w-6 md:h-6 text-black" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z"/>
               </svg>
@@ -289,68 +292,68 @@ export default function HeroSection() {
       </div>
 
       <style jsx>{`
-        @keyframes blink {
+        @keyframes hero-blink {
           0%, 100% { opacity: 1; }
           50% { opacity: 0; }
         }
-        @keyframes wave {
+        @keyframes hero-wave {
           0%, 100% { transform: rotate(0deg); }
           25% { transform: rotate(20deg); }
           75% { transform: rotate(-20deg); }
         }
-        @keyframes float {
+        @keyframes hero-float {
           0%, 100% { transform: translateY(0px); }
           50% { transform: translateY(-15px); }
         }
-        @keyframes float-delayed {
+        @keyframes hero-float-delayed {
           0%, 100% { transform: translateY(0px); }
           50% { transform: translateY(-20px); }
         }
-        @keyframes spin-slow {
+        @keyframes hero-spin-slow {
           from { transform: rotate(0deg); }
           to { transform: rotate(360deg); }
         }
-        @keyframes bounce-slow {
+        @keyframes hero-bounce-slow {
           0%, 100% { transform: translateY(0); }
           50% { transform: translateY(-10px); }
         }
-        @keyframes pulse-slow {
+        @keyframes hero-pulse-slow {
           0%, 100% { opacity: 0.3; }
           50% { opacity: 0.5; }
         }
         
-        .animate-blink {
-          animation: blink 1s steps(2, start) infinite;
+        .hero-animate-blink {
+          animation: hero-blink 1s steps(2, start) infinite;
         }
-        .animate-wave {
-          animation: wave 2s ease-in-out infinite;
+        .hero-animate-wave {
+          animation: hero-wave 2s ease-in-out infinite;
           transform-origin: 70% 70%;
         }
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
+        .hero-animate-float {
+          animation: hero-float 6s ease-in-out infinite;
         }
-        .animate-float-delayed {
-          animation: float-delayed 8s ease-in-out infinite;
+        .hero-animate-float-delayed {
+          animation: hero-float-delayed 8s ease-in-out infinite;
         }
-        .animate-spin-slow {
-          animation: spin-slow 20s linear infinite;
+        .hero-animate-spin-slow {
+          animation: hero-spin-slow 20s linear infinite;
         }
-        .animate-bounce-slow {
-          animation: bounce-slow 3s ease-in-out infinite;
+        .hero-animate-bounce-slow {
+          animation: hero-bounce-slow 3s ease-in-out infinite;
         }
-        .animate-pulse-slow {
-          animation: pulse-slow 4s ease-in-out infinite;
+        .hero-animate-pulse-slow {
+          animation: hero-pulse-slow 4s ease-in-out infinite;
         }
 
         /* Reduce motion for users who prefer it */
         @media (prefers-reduced-motion: reduce) {
-          .animate-blink,
-          .animate-wave,
-          .animate-float,
-          .animate-float-delayed,
-          .animate-spin-slow,
-          .animate-bounce-slow,
-          .animate-pulse-slow {
+          .hero-animate-blink,
+          .hero-animate-wave,
+          .hero-animate-float,
+          .hero-animate-float-delayed,
+          .hero-animate-spin-slow,
+          .hero-animate-bounce-slow,
+          .hero-animate-pulse-slow {
             animation: none;
           }
         }
