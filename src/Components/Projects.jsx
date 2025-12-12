@@ -63,7 +63,7 @@ const Projects = () => {
     image: new URL("../assets/images/projects/ecommerce.jpg", import.meta.url).href,
     link: "https://github.com/Arsk86shaikh/E-commerce_web",
     github: "https://github.com/Arsk86shaikh/E-commerce_web",
-    category: "Frontend + Backend",
+    category: "Backend",
     featured: false
   },
   {
@@ -75,7 +75,7 @@ const Projects = () => {
     image: new URL("../assets/images/projects/portfolio.jpg", import.meta.url).href,
     link: "https://github.com/Arsk86shaikh/portfolio-website",
     github: "https://github.com/Arsk86shaikh/portfolio-website",
-    category: "Frontend + Backend",
+    category: "Backend",
     featured: false
   },
   {
@@ -87,7 +87,7 @@ const Projects = () => {
     image: new URL("../assets/images/projects/bloggram.png", import.meta.url).href,
     link: "https://github.com/Arsk86shaikh/blog",
     github: "https://github.com/Arsk86shaikh/blog",
-    category: "Frontend + Backend",
+    category: "Backend",
     featured: false
   },
   {
@@ -106,7 +106,7 @@ const Projects = () => {
 
 
 
-  const categories = ['All', 'Full Stack','Frontend + Backend ', 'Frontend', 'AI/ML'];
+  const categories = ['All', 'Full Stack','Backend', 'Frontend', 'AI/ML'];
 
   const filteredProjects = selectedCategory === 'All'
     ? projectsData
