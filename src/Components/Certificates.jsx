@@ -20,7 +20,7 @@ const certificatesData = [
       database: ["PostgreSQL", "SQL"],
       tools: ["Git", "GitHub", "Postman", "npm", "RESTful API"]
     },
-    buttons: [{ text: "View Certificate", link: "/certificates/fullstack.pdf" }],
+    buttons: [{ text: "View Certificate", link: "/fullstack.pdf" }],
     featured: true
   },
 
@@ -36,7 +36,7 @@ const certificatesData = [
     skills: {
       programming: ["Core Java", "Object-Oriented Programming", "Java Collections", "Exception Handling", "Multi-threading"]
     },
-    buttons: [{ text: "View Certificate", link: "/certificates/java.jpg" }],
+    buttons: [{ text: "View Certificate", link: "/java.jpg" }],
     featured: true
   },
 
@@ -53,8 +53,8 @@ const certificatesData = [
       programming: ["Python Fundamentals", "Data Structures", "Object-Oriented Programming", "File Handling"]
     },
     buttons: [
-      { text: "Certification", link: "/certificates/training.pdf" },
-      { text: "Award Certificate", link: "/certificates/awardstraining.pdf" }
+      { text: "Certification", link: "/training.pdf" },
+      { text: "Award Certificate", link: "/awardstraining.pdf" }
     ],
     featured: false
   },
@@ -70,7 +70,7 @@ const certificatesData = [
     skills: {
       cloud: ["AWS Cloud Services", "Cloud Computing", "Cloud Solutions"]
     },
-    buttons: [{ text: "Certification", link: "/certificates/certificate.pdf" }],
+    buttons: [{ text: "Certification", link: "/certificate.pdf" }],
     featured: false
   },
 
@@ -86,8 +86,8 @@ const certificatesData = [
       programming: ["Programming Fundamentals", "Problem Solving", "Project Development"]
     },
     buttons: [
-      { text: "Certification", link: "/certificates/nxtwave.pdf" },
-      { text: "Award", link: "/certificates/award.pdf" }
+      { text: "Certification", link: "/nxtwave.pdf" },
+      { text: "Award", link: "/award.pdf" }
     ],
     featured: false
   }
